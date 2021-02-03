@@ -38,7 +38,7 @@ class OAuth extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return 'https://www.mapmyfitness.com/v7.1/oauth2/access_token/';
+        return 'https://api.ua.com/v7.1/oauth2/access_token/';
     }
 
     /**
@@ -49,7 +49,7 @@ class OAuth extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return 'https://www.mapmyfitness.com/v7.1/user/self/';
+        return 'https://api.ua.com/v7.1/user/self/';
     }
 
     /**
