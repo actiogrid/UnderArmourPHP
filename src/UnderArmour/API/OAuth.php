@@ -112,4 +112,30 @@ class OAuth extends AbstractProvider
     {
         // TODO: Implement createResourceOwner() method.
     }
+
+    /**
+     * Revoke access for the given token.
+     *
+     * @param AccessToken $accessToken
+     * @param $user_id
+     * @return mixed
+     */
+    public function revoke(AccessToken $accessToken, $user_id)
+    {
+        $uri = $this->appendQuery(
+            static::BASE_UNDERARMOUR_API_URL.'/oauth2/connection/',
+            $this->buildQueryString([
+                'user_id' => $user_id,
+                'client_id' => $this->clientId,
+            ])
+        );
+
+        $request = $this->getAuthenticatedRequest(
+            'DELETE',
+            $uri,
+            $accessToken->getToken()
+        );
+
+        return $this->getResponse($request);
+    }
 }
