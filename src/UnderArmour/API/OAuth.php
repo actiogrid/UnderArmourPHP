@@ -21,13 +21,27 @@ class OAuth extends AbstractProvider
     use BearerAuthorizationTrait;
 
     /**
+     * Under Armour URL.
+     *
+     * @const string
+     */
+    const BASE_UNDERARMOUR_URL = 'https://www.mapmyfitness.com/v7.1';
+
+    /**
+     * Under Armour API URL.
+     *
+     * @const string
+     */
+    const BASE_UNDERARMOUR_API_URL = 'https://api.ua.com/v7.1';
+
+    /**
      * Returns the base URL for authorizing a client.
      *
      * @return string
      */
     public function getBaseAuthorizationUrl()
     {
-        return 'https://www.mapmyfitness.com/v7.1/oauth2/authorize/';
+        return static::BASE_UNDERARMOUR_URL.'/oauth2/authorize/';
     }
 
     /**
@@ -38,7 +52,7 @@ class OAuth extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return 'https://api.ua.com/v7.1/oauth2/access_token/';
+        return static::BASE_UNDERARMOUR_API_URL.'/oauth2/access_token/';
     }
 
     /**
@@ -49,7 +63,7 @@ class OAuth extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return 'https://api.ua.com/v7.1/user/self/';
+        return static::BASE_UNDERARMOUR_API_URL.'/user/self/';
     }
 
     /**
