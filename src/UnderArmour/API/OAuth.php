@@ -7,6 +7,7 @@ use League\OAuth2\Client\Token\AccessToken as AccessToken;
 use League\OAuth2\Client\Tool\BearerAuthorizationTrait as BearerAuthorizationTrait;
 use League\OAuth2\Client\Provider\AbstractProvider as AbstractProvider;
 use Psr\Http\Message\ResponseInterface;
+use UnexpectedValueException;
 
 /**
  * Under Armour OAuth
@@ -111,6 +112,18 @@ class OAuth extends AbstractProvider
     protected function createResourceOwner(array $response, AccessToken $token)
     {
         // TODO: Implement createResourceOwner() method.
+    }
+
+    /**
+     * Parses the response according to its content-type header.
+     *
+     * @throws UnexpectedValueException
+     * @param  ResponseInterface $response
+     * @return array
+     */
+    public function parseResponse(ResponseInterface $response)
+    {
+        return parent::parseResponse($response);
     }
 
     /**
