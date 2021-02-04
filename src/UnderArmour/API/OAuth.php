@@ -133,7 +133,8 @@ class OAuth extends AbstractProvider
         $request = $this->getAuthenticatedRequest(
             'DELETE',
             $uri,
-            $accessToken->getToken()
+            $accessToken->getToken(),
+            ['headers' => ['Api-Key' => $this->clientId]]
         );
 
         return $this->getResponse($request);
