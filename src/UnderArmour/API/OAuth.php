@@ -26,14 +26,21 @@ class OAuth extends AbstractProvider
      *
      * @const string
      */
-    const BASE_UNDERARMOUR_URL = 'https://www.mapmyfitness.com/v7.1';
+    const BASE_UNDERARMOUR_URL = 'https://www.mapmyfitness.com/';
 
     /**
      * Under Armour API URL.
      *
      * @const string
      */
-    const BASE_UNDERARMOUR_API_URL = 'https://api.ua.com/v7.1';
+    const BASE_UNDERARMOUR_API_URL = 'https://api.ua.com/';
+
+    /**
+     * Under Armour API version.
+     *
+     * @const string
+     */
+    const BASE_UNDERARMOUR_API_VERSION = 'v7.1';
 
     /**
      * Returns the base URL for authorizing a client.
@@ -42,7 +49,7 @@ class OAuth extends AbstractProvider
      */
     public function getBaseAuthorizationUrl()
     {
-        return static::BASE_UNDERARMOUR_URL.'/oauth2/authorize/';
+        return static::BASE_UNDERARMOUR_URL.static::BASE_UNDERARMOUR_API_VERSION.'/oauth2/authorize/';
     }
 
     /**
@@ -53,7 +60,7 @@ class OAuth extends AbstractProvider
      */
     public function getBaseAccessTokenUrl(array $params)
     {
-        return static::BASE_UNDERARMOUR_API_URL.'/oauth2/access_token/';
+        return static::BASE_UNDERARMOUR_API_URL.static::BASE_UNDERARMOUR_API_VERSION.'/oauth2/access_token/';
     }
 
     /**
@@ -64,7 +71,7 @@ class OAuth extends AbstractProvider
      */
     public function getResourceOwnerDetailsUrl(AccessToken $token)
     {
-        return static::BASE_UNDERARMOUR_API_URL.'/user/self/';
+        return static::BASE_UNDERARMOUR_API_URL.static::BASE_UNDERARMOUR_API_VERSION.'/user/self/';
     }
 
     /**
@@ -136,7 +143,7 @@ class OAuth extends AbstractProvider
     public function revoke(AccessToken $accessToken, $user_id)
     {
         $uri = $this->appendQuery(
-            static::BASE_UNDERARMOUR_API_URL.'/oauth2/connection/',
+            static::BASE_UNDERARMOUR_API_URL.static::BASE_UNDERARMOUR_API_VERSION.'/oauth2/connection/',
             $this->buildQueryString([
                 'user_id' => $user_id,
                 'client_id' => $this->clientId,
